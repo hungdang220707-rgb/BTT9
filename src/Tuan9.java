@@ -1,104 +1,12 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-class Sach {
-    protected String maSach;
-    protected String ngayNhap;
-    protected double donGia;
-    protected int soLuong;
-    protected String nhaXuatBao;
-
-    public Sach() {
-    }
-    public Sach(String maSach, String ngayNhap, double donGia, int soLuong, String nhaXuatBao) {
-        this.maSach = maSach;
-        this.ngayNhap = ngayNhap;
-        this.donGia = donGia;
-        this.soLuong = soLuong;
-        this.nhaXuatBao = nhaXuatBao;
-    }
-
-    public void nhap() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Nhập mã sách: ");
-        maSach = scanner.nextLine();
-        System.out.print("Nhập ngày nhập (dd/mm/yyyy): ");
-        ngayNhap = scanner.nextLine();
-        System.out.print("Nhập đơn giá: ");
-        donGia = scanner.nextDouble();
-        System.out.print("Nhập số lượng: ");
-        soLuong = scanner.nextInt();
-        scanner.nextLine();
-        System.out.print("Nhập nhà xuất bản: ");
-        nhaXuatBao = scanner.nextLine();
-    }
-    public void xuat() {
-        System.out.print("Mã sách: " + maSach + " | Ngày nhập: " + ngayNhap + " | Đơn giá: " + donGia + " | Số lượng: " + soLuong + " | NXB: " + nhaXuatBao);
-    }
-    public double thanhTien() {
-        return 0;
-    }
-    public String getNhaXuatBao() {
-        return nhaXuatBao;
-    }
-    public double getDonGia() {
-        return donGia;
-    }
-}
-class SachGiaoKhoa extends Sach {
-    private String tinhTrang;
-    public SachGiaoKhoa() {
-        super();
-    }
-    @Override
-    public void nhap() {
-        super.nhap();
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Nhập tình trạng sách (moi / cu): ");
-        tinhTrang = scanner.nextLine();
-    }
-    @Override
-    public void xuat() {
-        super.xuat();
-        System.out.println(" | Tình trạng: " + tinhTrang + " | Thành tiền: " + thanhTien());
-    }
-    @Override
-    public double thanhTien() {
-        if (tinhTrang.equalsIgnoreCase("moi")) {
-            return soLuong * donGia;
-        } else {
-            return soLuong * donGia * 0.5;
-        }
-    }
-}
-class SachThamKhao extends Sach {
-    private double thue;
-
-    public SachThamKhao() {
-        super();
-    }
-    @Override
-    public void nhap() {
-        super.nhap();
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Nhập tiền thuế: ");
-        thue = scanner.nextDouble();
-    }
-    @Override
-    public void xuat() {
-        super.xuat();
-        System.out.println(" | Thuế: " + thue + " | Thành tiền: " + thanhTien());
-    }
-    @Override
-    public double thanhTien() {
-        return soLuong * donGia + thue;
-    }
-}
 public class Tuan9 {
     public static void main(String[] args) {
         ArrayList<Sach> danhSach = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         int chon;
+
         do {
             System.out.println("\n--- CHƯƠNG TRÌNH QUẢN LÝ SÁCH ---");
             System.out.println("1. Nhập danh sách sách (SGK hoặc Sách tham khảo)");
@@ -110,6 +18,7 @@ public class Tuan9 {
             System.out.print("Chọn chức năng: ");
             chon = scanner.nextInt();
             scanner.nextLine(); // Bỏ dòng thừa
+
             switch (chon) {
                 case 1:
                     System.out.print("Bạn muốn nhập sách nào? (1: Sách giáo khoa, 2: Sách tham khảo): ");
